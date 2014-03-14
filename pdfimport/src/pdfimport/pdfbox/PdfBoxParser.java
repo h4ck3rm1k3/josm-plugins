@@ -10,7 +10,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.util.PDFStreamEngine;
-import org.openstreetmap.josm.gui.progress.ProgressMonitor;
+//import org.openstreetmap.josm.gui.progress.ProgressMonitor;
 
 import pdfimport.PathOptimizer;
 
@@ -22,9 +22,9 @@ public class PdfBoxParser extends PDFStreamEngine{
 	}
 
 	@SuppressWarnings("unchecked")
-	public void parse(File file, int maxPaths, ProgressMonitor monitor) throws Exception
+	public void parse(File file, int maxPaths) throws Exception
 	{
-		monitor.beginTask(tr("Parsing PDF", 1));
+            //		monitor.beginTask(tr("Parsing PDF", 1));
 
 		PDDocument document = PDDocument.load( file);
 
@@ -46,11 +46,11 @@ public class PdfBoxParser extends PDFStreamEngine{
 			rotation = rotationVal.intValue();
 		}
 
-		GraphicsProcessor p = new GraphicsProcessor(target, rotation, maxPaths, monitor);
+		GraphicsProcessor p = new GraphicsProcessor(target, rotation, maxPaths);
 		PageDrawer drawer = new PageDrawer();
 		drawer.drawPage(p, page);
 		this.target.bounds = new Rectangle2D.Double(pageSize.getLowerLeftX(), pageSize.getLowerLeftY(), pageSize.getWidth(), pageSize.getHeight());
 
-		monitor.finishTask();
+                //		monitor.finishTask();
 	}
 }

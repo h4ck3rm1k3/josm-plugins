@@ -12,7 +12,7 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openstreetmap.josm.gui.progress.ProgressMonitor;
+//import org.openstreetmap.josm.gui.progress.ProgressMonitor;
 
 import pdfimport.LayerInfo;
 import pdfimport.PathOptimizer;
@@ -29,11 +29,12 @@ public class GraphicsProcessor{
 	private boolean clipAreaDrawn;
 
 	private final AffineTransform transform;
-	private final ProgressMonitor monitor;
+    //	private final ProgressMonitor monitor;
 	private final int maxPaths;
 
 
-	public GraphicsProcessor(PathOptimizer target, int rotation, int maxPaths, ProgressMonitor monitor)
+	public GraphicsProcessor(PathOptimizer target, int rotation, int maxPaths// , ProgressMonitor monitor
+                                 )
 	{
 		this.maxPaths = maxPaths;
 		this.target = target;
@@ -41,7 +42,7 @@ public class GraphicsProcessor{
 		this.transform.rotate(-Math.toRadians(rotation));
 		this.info.stroke = Color.BLACK;
 		this.info.fill = Color.BLACK;
-		this.monitor = monitor;
+		//this.monitor = monitor;
 	}
 
 
@@ -49,7 +50,7 @@ public class GraphicsProcessor{
 		pathNo ++;
 
 		if (pathNo % 100 == 0) {
-			this.monitor.setCustomText(tr(" {0} objects so far", pathNo));
+                    //			this.monitor.setCustomText(tr(" {0} objects so far", pathNo));
 		}
 
 		if (pathNo >= maxPaths) {

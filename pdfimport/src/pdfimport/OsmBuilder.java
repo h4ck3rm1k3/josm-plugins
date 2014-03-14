@@ -14,7 +14,7 @@ import org.openstreetmap.josm.data.osm.Node;
 import org.openstreetmap.josm.data.osm.Relation;
 import org.openstreetmap.josm.data.osm.RelationMember;
 import org.openstreetmap.josm.data.osm.Way;
-import org.openstreetmap.josm.gui.progress.ProgressMonitor;
+//import org.openstreetmap.josm.gui.progress.ProgressMonitor;
 
 public class OsmBuilder {
 
@@ -27,7 +27,7 @@ public class OsmBuilder {
 	private String lineName;
 	private Mode mode;
 
-	private ProgressMonitor monitor;
+    //private ProgressMonitor monitor;
 	private int monitorPos;
 	private int monitorTotal;
 
@@ -36,31 +36,28 @@ public class OsmBuilder {
 		this.placement = placement;
 	}
 
-	public DataSet build(List<LayerContents> data, Mode mode, ProgressMonitor monitor) {
+	public DataSet build(List<LayerContents> data, Mode mode) {
 
-		this.monitor = monitor;
-		this.monitorPos = 0;
-		this.mode = mode;
-		DataSet result = new DataSet();
+            // this.monitor = monitor;
+            // this.monitorPos = 0;
+            this.mode = mode;
+            DataSet result = new DataSet();
 
-		//count total items for progress monitor.
-		this.monitorTotal = 0;
-		for (LayerContents layer: data) {
-			this.monitorTotal += layer.paths.size();
-			for(PdfMultiPath mp: layer.multiPaths){
-				this.monitorTotal += mp.paths.size();
-			}
-		}
-
-		monitor.beginTask(tr("Building JOSM layer."), this.monitorTotal);
-
-
-		for (LayerContents layer: data) {
-			this.addLayer(result, layer);
-		}
-
-		monitor.finishTask();
-		return result;
+            // //count total items for progress monitor.
+            // this.monitorTotal = 0;
+            // for (LayerContents layer: data) {
+            // 	this.monitorTotal += layer.paths.size();
+            // 	for(PdfMultiPath mp: layer.multiPaths){
+            // 		this.monitorTotal += mp.paths.size();
+            // 	}
+            // }
+            
+            // monitor.beginTask(tr("Building JOSM layer."), this.monitorTotal);
+            for (LayerContents layer: data) {
+                this.addLayer(result, layer);
+            }
+            // monitor.finishTask();
+            return result;
 	}
 
 
@@ -120,12 +117,6 @@ public class OsmBuilder {
 	}
 
 	private Way insertWay(PdfPath path, Map<Point2D, Node> point2Node, int multipathId, boolean multipolygon) {
-
-		if (this.monitorPos % 100 == 0) {
-			monitor.setExtraText(tr(" "+this.monitorPos+"/"+this.monitorTotal));
-			monitor.setTicks(this.monitorPos);
-		}
-		this.monitorPos ++;
 
 		List<Node> nodes = new ArrayList<Node>(path.points.size());
 

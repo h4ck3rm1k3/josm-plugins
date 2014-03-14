@@ -60,11 +60,11 @@ public class FilePlacement {
 
 	public void fromProperties(Properties p){
 		String projectionCode = p.getProperty("Projection", null);
-		if (projectionCode != null) {
-			projection = ProjectionInfo.getProjectionByCode(projectionCode);
-		} else {
-			projection = null;
-		}
+		// if (projectionCode != null) {
+		// 	projection = ProjectionInfo.getProjectionByCode(projectionCode);
+		// } else {
+                projection = null;
+		// }
 
 		minX = parseProperty(p, "minX", minX);
 		maxX = parseProperty(p, "maxX", maxX);

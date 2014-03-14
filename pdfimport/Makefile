@@ -1,5 +1,6 @@
 
 FILES =     																	\
+    src/pdfimport/Standalone.java                                                                                                               \
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/data/osm/OsmPrimitive.java				\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/data/osm/DataSet.java				\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/tools/I18n.java					\
@@ -70,6 +71,52 @@ FILES =     																	\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/data/ProjectionBounds.java				\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/tools/PrimaryDateParser.java			\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/tools/FallbackDateParser.java			\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/DuplicateNodesFinder.java					\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/FilePlacement.java						\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/LayerContents.java						\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/LayerInfo.java							\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/LoadPdfDialog.java						\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/OrthogonalShapesFilter.java					\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/OsmBuilder.java							\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/ParallelSegmentsFinder.java					\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/PathOptimizer.java						\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/PdfImportAction.java						\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/PdfImportPlugin.java						\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/PdfMultiPath.java						\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/PdfPath.java							\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/ProjectionInfo.java						\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/GraphicsProcessor.java					\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/PageDrawer.java						\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/PdfBoxParser.java					\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/AppendRectangleToPath.java			\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/BeginInlineImage.java				\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/ClipEvenOddRule.java				\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/ClipNonZeroRule.java				\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/CloseFillEvenOddAndStrokePath.java		\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/CloseFillNonZeroAndStrokePath.java		\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/ClosePath.java					\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/CurveTo.java					\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/CurveToReplicateFinalPoint.java		\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/CurveToReplicateInitialPoint.java		\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/EndPath.java					\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/FillEvenOddAndStrokePath.java			\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/FillEvenOddRule.java				\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/FillNonZeroAndStrokePath.java			\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/FillNonZeroRule.java				\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/Invoke.java					\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/LineTo.java					\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/MoveTo.java					\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/SHFill.java					\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/SetLineCapStyle.java				\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/SetLineDashPattern.java			\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/SetLineJoinStyle.java				\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/SetLineMiterLimit.java				\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/SetLineWidth.java				\
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/StrokePath.java                                \
+    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/io/OsmExporter.java				\
+    /mnt/data/home/mdupont/experiments/osm/josm/src/org/openstreetmap/josm/gui/layer/OsmDataLayer.java                                          \
+    /mnt/data/home/mdupont/experiments/osm/josm/src/org/openstreetmap/josm/gui/layer/Layer.java                                          \
+
 
 TEST =    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/data/APIDataSet.java				\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/data/Preferences.java				\
@@ -84,7 +131,6 @@ TEST =    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/data/osm/PrimitiveDeepCopy.java			\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/data/osm/TigerUtils.java				\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/gui/layer/Layer.java				\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/gui/layer/OsmDataLayer.java			\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/io/AllFormatsImporter.java				\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/io/BoundingBoxDownloader.java			\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/io/CacheCustomContent.java				\
@@ -117,7 +163,6 @@ TEST =    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/io/OsmChangesetParser.java				\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/io/OsmConnection.java				\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/io/OsmDataParsingException.java			\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/io/OsmExporter.java				\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/io/OsmGzipExporter.java				\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/io/OsmGzipImporter.java				\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/io/OsmHistoryReader.java				\
@@ -172,53 +217,11 @@ TEST =    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/tools/WikiReader.java				\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/tools/WindowGeometry.java				\
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/tools/XmlObjectParser.java				\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/DuplicateNodesFinder.java					\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/FilePlacement.java						\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/LayerContents.java						\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/LayerInfo.java							\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/LoadPdfDialog.java						\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/OrthogonalShapesFilter.java					\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/OsmBuilder.java							\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/ParallelSegmentsFinder.java					\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/PathOptimizer.java						\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/PdfImportAction.java						\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/PdfImportPlugin.java						\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/PdfMultiPath.java						\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/PdfPath.java							\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/ProjectionInfo.java						\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/GraphicsProcessor.java					\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/PageDrawer.java						\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/PdfBoxParser.java					\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/AppendRectangleToPath.java			\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/BeginInlineImage.java				\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/ClipEvenOddRule.java				\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/ClipNonZeroRule.java				\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/CloseFillEvenOddAndStrokePath.java		\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/CloseFillNonZeroAndStrokePath.java		\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/ClosePath.java					\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/CurveTo.java					\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/CurveToReplicateFinalPoint.java		\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/CurveToReplicateInitialPoint.java		\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/EndPath.java					\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/FillEvenOddAndStrokePath.java			\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/FillEvenOddRule.java				\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/FillNonZeroAndStrokePath.java			\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/FillNonZeroRule.java				\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/Invoke.java					\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/LineTo.java					\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/MoveTo.java					\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/SHFill.java					\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/SetLineCapStyle.java				\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/SetLineDashPattern.java			\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/SetLineJoinStyle.java				\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/SetLineMiterLimit.java				\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/SetLineWidth.java				\
-    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/pdfimport/pdfbox/operators/StrokePath.java
 
 
 
 javac3 :
-	javac -Xlint:unchecked $(FILES)
+	javac -Xlint:unchecked -cp ./lib/pdfbox.jar $(FILES)
 
 
 javac2 :
