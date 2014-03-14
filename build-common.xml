@@ -12,7 +12,8 @@
 -->
 <project name="plugin_common" basedir=".">
 
-    <property name="josm"                   location="../../core/dist/josm-custom.jar"/>
+<!--    <property name="josm"
+location="../../core/dist/josm-custom.jar"/> -->
     <property name="plugin.build.dir"       value="build"/>
     <property name="plugin.src.dir"         value="src"/>
     <property name="plugin.lib.dir"         value="lib"/>
@@ -40,12 +41,12 @@
         <javac srcdir="src" debug="true" destdir="${plugin.build.dir}" includeantruntime="false" encoding="UTF-8">
             <compilerarg value="-Xlint:deprecation"/>
             <compilerarg value="-Xlint:unchecked"/>
-            <classpath>
-                <pathelement location="${josm}"/>
-                <fileset dir="${plugin.lib.dir}" erroronmissingdir="no">
-                    <include name="**/*.jar"/>
-                </fileset>
-            </classpath>
+            <!-- <classpath> -->
+            <!--     <pathelement location="${josm}"/> -->
+            <!--     <fileset dir="${plugin.lib.dir}" erroronmissingdir="no"> -->
+            <!--         <include name="**/*.jar"/> -->
+            <!--     </fileset> -->
+            <!-- </classpath> -->
         </javac>
     </target>
     <!--
