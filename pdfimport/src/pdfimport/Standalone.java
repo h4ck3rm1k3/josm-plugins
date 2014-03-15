@@ -15,44 +15,37 @@ import org.openstreetmap.josm.data.osm.OsmPrimitive;
 import org.openstreetmap.josm.io.OsmExporter;
 import pdfimport.pdfbox.PdfBoxParser;
 import java.awt.Color;
+import java.io.PrintStream;
 
 public class Standalone
 { 
 
-    private File fileName;
-    private PathOptimizer data;
-    private OsmDataLayer layer;
-    protected OsmDataLayer newLayer;
-    FilePlacement placement; // = new FilePlacement();
 
-    void parsePlacement(
-                        double minX,
-                        double minY,
-                        double maxX,
-                        double maxY,
-                        
-                        double minEastField,
-                        double minNorthField,
-                        double maxEastField,
-                        double maxNorthField
-                        
-                        ) {
-        
-        //placement.projection = selectedProjection.getProjection();
-        
-        this.placement.setPdfBounds(
-                                    minX,
-                                    minY,
-                                    maxX,
-                                    maxY);
-        
-        this.placement.setEastNorthBounds(
-                                          minEastField,
-                                          minNorthField,
-                                          maxEastField,
-                                          maxNorthField);
-        //return placement;
-    }
+    // void parsePlacement(
+    //                     double minX,
+    //                     double minY,
+    //                     double maxX,
+    //                     double maxY,                       
+    //                     double minEastField,
+    //                     double minNorthField,
+    //                     double maxEastField,
+    //                     double maxNorthField                       
+    //                     ) {        
+    //     //placement.projection = selectedProjection.getProjection();        
+    //     this.placement.setPdfBounds(
+    //                                 minX,
+    //                                 minY,
+    //                                 maxX,
+    //                                 maxY);        
+    //     this.placement.setEastNorthBounds(
+    //                                       minEastField,
+    //                                       minNorthField,
+    //                                       maxEastField,
+    //                                       maxNorthField);
+    //     //return placement;
+    // }
+
+    PathOptimizer data;
 
     PathOptimizer loadPDF(File fileName) throws Exception
     {
@@ -77,7 +70,8 @@ public class Standalone
 
         boolean splitOnColorChangeCheck = true;
 
-        PathOptimizer data = new PathOptimizer(nodesTolerance, color, splitOnColorChangeCheck);
+
+        this.data = new PathOptimizer(nodesTolerance, color, splitOnColorChangeCheck);
         
         PdfBoxParser parser = new PdfBoxParser(data);
 
@@ -110,24 +104,26 @@ public class Standalone
 
     public void process (
                          File newFileName,
-                         String layer_name,
+                         File placement_file,
                          File outfile                         
                          ) throws Exception 
     {
-        this.data = this.loadPDF(newFileName);
+        String layer_name= new String("Test");
+        data = this.loadPDF(newFileName);
         OsmBuilder.Mode mode = OsmBuilder.Mode.Debug;
         OsmExporter exporter = new OsmExporter();
+        FilePlacement placement = new FilePlacement();
+
+        // load placement from file
+        Properties p = new Properties();
+        p.load(new FileInputStream(placement_file));
+        placement.fromProperties(p);
         OsmBuilder builder = new OsmBuilder(placement);
+
         DataSet data = builder.build(this.data.getLayers(), OsmBuilder.Mode.Final);
         OsmDataLayer result = new OsmDataLayer(data, layer_name, null);
         result.onPostLoadFromFile();       
-        
-        fileName = newFileName;
-        newLayer = null;
-        //FilePlacement placement =  loadPlacement();
-        //LoadPdfDialog.this.setPlacement(placement);
-        //private void setPlacement(FilePlacement placement) {    
-        exporter.exportData(outfile, layer);
+        exporter.exportData(outfile, result);
 
     }
 
@@ -135,10 +131,23 @@ public class Standalone
 	{
             System.out.printf("Hello World\n");
 
-            Properties p = new Properties();
-            //p.load(new FileInputStream(propertiesFile));
-            //pl.fromProperties(p);
+            // command line parameter
+            if(args.length != 3) {
+                System.err.println("Invalid command line, exactly three argument required");
+                System.exit(1);
+            }
+            File infile = new File(args[0]);
+            File placement = new File(args[1]);
+            File outfile = new File(args[2]);
 
+            System.out.printf("infile %s \n", infile);
+            Standalone obj =  new Standalone();
+            try {
+                obj.process(infile, placement, outfile);
+            } catch (Exception e) {
+                System.out.printf("exception %s \n", e);
+                 e.printStackTrace(new PrintStream(System.out));
+            }
 
 	}
 

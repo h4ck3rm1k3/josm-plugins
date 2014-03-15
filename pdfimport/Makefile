@@ -219,16 +219,10 @@ TEST =    /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/
     /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src/org/openstreetmap/josm/tools/XmlObjectParser.java				\
 
 
-
-javac3 :
+javac :
 	javac -Xlint:unchecked -cp ./lib/pdfbox.jar $(FILES)
 
-
-javac2 :
-	javac -verbose $(FILES)
-
-
-javac :
+javac_ant :
 	javac -verbose -d /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/build -classpath /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/build -sourcepath /mnt/data/home/mdupont/experiments/osm/josm-plugins/pdfimport/src -target 1.6 -encoding UTF-8 -g  -Xlint:deprecation -Xlint:unchecked -source 1.6 $(FILES)
 
 build2:
@@ -241,3 +235,7 @@ debug:
 clean:
 	ant -emacs clean
 # -debug -verbose
+
+
+test : javac
+	java -cp ./lib/pdfbox.jar:.:src pdfimport.Standalone ~/Desktop/lawnreceosm/Sidewalk_Inventory.pdf ~/Desktop/lawnreceosm/Sidewalk_Inventory.pdf.placement Sidewalk_Inventory.osm
